@@ -27,9 +27,9 @@ const primes = [
 ];
 
 // ASSUMPTIONS:
-    // THE ARRAY IS ALREADY SORTED
-    // THE ARRAY IS NOT NESTED
-    // ALL NUMBERS IN THE ARRAY ARE POSITIVE INTEGERS
+// THE ARRAY IS ALREADY SORTED
+// THE ARRAY IS NOT NESTED
+// ALL NUMBERS IN THE ARRAY ARE POSITIVE INTEGERS
 
 // PSEUDOCODE
 
@@ -52,7 +52,7 @@ function binarySearch(arr, target) {
 	let max = arr.length - 1;
 	let guess;
 	let i = 0;
-	while (max > min) {
+	while (max >= min) {
 		i++;
 		console.log('i:', i);
 		guess = Math.floor((max + min) / 2);
