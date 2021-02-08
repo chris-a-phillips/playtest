@@ -10,14 +10,23 @@ const team = [{
 	franchise: ['name', 'city', 'conference']
 }]
 
+// function rotate(matrix) {
+//     let result = [];
+//     for(let i = 0; i < matrix[0].length; i++) {
+// 		console.log(matrix)
+// 		let row = matrix.map(e => e[i]).reverse();
+// 		console.log(row)
+//         result.push(row);
+//     }
+//     return result;
+// };
+
 function rotate(matrix) {
-    let result = [];
-    for(let i = 0; i < matrix[0].length; i++) {
-        let row = matrix.map(e => e[i]).reverse();
-        result.push(row);
-    }
-    return result;
-};
+	// since it is a 2D array (an array nested in an array) we need two loops (or a loop and a map)
+	
+}
 
 console.log('matrix:', rotate(matrix))
 // console.log('matrix reverse:', matrix.reverse())
+
+

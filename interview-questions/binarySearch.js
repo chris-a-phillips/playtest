@@ -26,18 +26,12 @@ const primes = [
 	97,
 ];
 
-// arr ARRAY OF INPUTS
-// n NUMBER OF ELEMENTS IN THE ARRAY
-// target THE NUMBER BEING SEARCHED FOR
+// ASSUMPTIONS:
+    // THE ARRAY IS ALREADY SORTED
+    // THE ARRAY IS NOT NESTED
+    // ALL NUMBERS IN THE ARRAY ARE POSITIVE INTEGERS
 
 // PSEUDOCODE
-// 1. let min = 0 and max = n - 1
-// 2. If max < min, stop because target is not present in array, Return -1
-// 3. Create guess as the average of max and min (round down it is an integer)
-// 4. If arr[guess] equals target, stop and Return guess
-// 5. If the guess was too low (array[guess] < target), set min = guess + 1
-// 6. If the guess was too high set max = guess - 1
-// 7. Go back to step 2
 
 // we are looking for the position not the actual number (becuase thats the input)
 // 1. set our minimum to be 0 (start of the array)
