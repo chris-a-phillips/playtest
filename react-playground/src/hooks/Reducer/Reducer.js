@@ -48,7 +48,6 @@ const Reducer = () => {
 		setName('');
 	}
     
-	console.log(todos)
 
 	return (
 		<div>
