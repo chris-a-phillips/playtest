@@ -16,7 +16,7 @@ function replaceStaff(array) {
 }
 
 // reduce() => return new value
-// reduces all values (numbers, strings, objects) into one value
+// reduces all values (numbers, strings, objects) into one value and is basically a loop with a memory
 
 function totalAge(array) {
     const ages = []
@@ -29,4 +29,10 @@ function totalAge(array) {
     return sum
 }
 
-console.log(totalAge(kitchenStaff))
+function reduceRoles(acc, curr) {
+
+    acc.push(curr.role)
+    return acc
+}
+
+console.log(reduceRoles())
