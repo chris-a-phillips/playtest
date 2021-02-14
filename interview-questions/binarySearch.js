@@ -67,6 +67,7 @@ function binarySearch(arr, target) {
 	return -1;
 }
 
+
 console.log(binarySearch(primes, 53));
 
 // console.log(linearSearch(primes, 47));
