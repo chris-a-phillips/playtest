@@ -29,10 +29,25 @@ function totalAge(array) {
     return sum
 }
 
-function reduceRoles(acc, curr) {
-
-    acc.push(curr.role)
-    return acc
+function listNames(arr, obj) {
+    arr.push(obj.name)
+    return arr
 }
 
-console.log(reduceRoles())
+const employees = [
+	{ name: 'Sam', age: 25, role: 'Developer' },
+	{ name: 'John', age: 32, role: 'Manager' },
+	{ name: 'Ronaldo', age: 29, role: 'Architect' },
+	{ name: 'Perker', age: 25, role: 'Developer' },
+	{ name: 'Sophia', age: 38, role: 'Director' },
+	{ name: 'kristine', age: 21, role: 'Developer' },
+];
+
+function getRoleReducer(acc, currentValue) {
+	acc.push(currentValue.role);
+	return acc;
+}
+
+const roles = employees.reduce(getRoleReducer, []);
+
+console.log(roles); 
