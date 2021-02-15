@@ -11,4 +11,4 @@ function countDown(num) {
     return countDown(num)
 }
 
-console.log(countDown(10))
+// console.log(countDown(10))
