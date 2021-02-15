@@ -1,0 +1,15 @@
+{
+  "name": "vanilla-js-playground",
+  "version": "1.0.0",
+  "description": "",
+  "main": "reference.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^26.6.3"
+  }
+}
