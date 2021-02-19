@@ -1,8 +1,10 @@
 let testMatrix = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9]
-]
+	[1, 2, 3, 4, 5],
+	[6, 7, 8, 9, 10],
+	[11, 12, 13, 14, 15],
+	[16, 17, 18, 19, 20],
+	[21, 22, 23, 24, 25],
+];
 
 //dev.to/alisabaj/rotating-a-matrix-90-degrees-4a49
 
@@ -45,9 +47,8 @@ function rotate(matrix) {
 	matrix.forEach((row) => {
 		reverse(row, 0, row.length - 1);
 	});
+	return matrix
 }
 
-
-
-rotate(testMatrix)
-console.log(testMatrix)
+console.table(testMatrix);
+console.table(rotate(testMatrix));
