@@ -25,14 +25,20 @@
 // The element in a that occurs in the array more than once and has the minimal index for its second occurrence. If there are no such elements, return -1.
 
 
+
 function firstDuplicate(a) {
 	const unique = [...new Set(a)];
-
+	
 	for (let i = 0; i < a.length; i++) {
 		if (unique[i] !== a[i]) {
 			return a[i];
 		}
 	}
-
+	
 	return -1;
 }
+
+// create a new set from the original array
+// loop over the set and original
+// if the set and the array don't match at a certain index return that number
+// else return -1
