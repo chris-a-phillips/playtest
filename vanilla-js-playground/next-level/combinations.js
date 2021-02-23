@@ -50,7 +50,7 @@ const testArray = ['a', 'b', 'c'];
 //  [ a, b, c ]
 // ]
 
-console.log(combinations(testArray));
+console.log(combinations([1, 2, 3, 4]));
 
 
 
