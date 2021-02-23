@@ -51,3 +51,8 @@ function getRoleReducer(acc, currentValue) {
 const roles = employees.reduce(getRoleReducer, []);
 
 console.log(roles); 
+
+
+
+
+// create sort for array
