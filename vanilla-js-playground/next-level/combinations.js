@@ -11,9 +11,43 @@
 
 // GENERAL RULES
     // Given a set of n things, there are 2^n possible combinations
+    // each recurse is doubling in size because it is doing two things every time
+
+const combinations = (elements) => {
+    if (elements.length === 0) return [ [] ]
+
+    // this is the one we make the decision for
+    const firstElem = elements[0]
+    const rest = elements.slice(1)
+
+    // make a recursive call on the array without the first element
+    const combosWithoutFirst = combinations(rest)
+    const combosWithFirst = []
+
+    combosWithoutFirst.forEach(combo => {
+        // create a copy of the combination and add on the first element
+        const combosWithFirst = [...combo, firstElem]
+        combosWithFirst.push(combosWithFirst)
+    })
+
+    return [ ...combosWithoutFirst, ...combosWithFirst ]
+}
 
 
+const testArray = ['a', 'b', 'c'];
 
+// [
+//  [],
+//  [ a ],
+//  [ b ],
+//  [ c ],
+//  [ a, b ],
+//  [ b, c ],
+//  [ a, a ],
+//  [ a, b, c ]
+// ]
+
+console.log(combinations(testArray));
 
 
 
