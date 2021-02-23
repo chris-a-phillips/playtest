@@ -33,6 +33,9 @@ const combinations = (elements) => {
     return [ ...combosWithoutFirst, ...combosWithFirst ]
 }
 
+// Time: O(2^n)
+// Space: O(n^2)
+
 
 const testArray = ['a', 'b', 'c'];
 
