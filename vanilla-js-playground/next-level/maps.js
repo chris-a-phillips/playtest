@@ -1,3 +1,5 @@
+// www.digitalocean.com/community/tutorials/understanding-map-and-set-objects-in-javascript#maps
+
 // Properties/Methods	Description	Returns
 // set(key, value)	Appends a key/value pair to a Map	Map Object
 // delete(key)	Removes a key/value pair from a Map by key	Boolean
@@ -10,7 +12,7 @@
 // forEach()	Iterates through the Map in insertion order	N/A
 // size	Returns the number of items in a Map	Number
 
-const map = new Map([
+https: const map = new Map([
 	[1970, 'bell bottoms'],
 	[1980, 'leg warmers'],
 	[1990, 'flannel'],
