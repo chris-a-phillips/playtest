@@ -1,6 +1,8 @@
-const matrix = []
-
-
+const matrix = [
+	[1, 2, 3, 4],
+	[5, 6, 7, 8],
+	[9, 10, 11, 12],
+];
 
 function countNeighbors(grid) {
 	const rows = grid.length;
@@ -43,3 +45,6 @@ function countNeighbors(grid) {
 
 	return neighbors;
 }
+
+
+// console.log(countNeighbors(matrix))
