@@ -55,14 +55,18 @@ function countNeighbors(grid) {
 }
 
 const gridCheck = (grid) => {
-	console.log(grid)
+	let res = 0
+
 	for (let i = 0; i < grid.length; i++) {
 		for (let j = 0; j < grid[0].length; j++) {
 			if (grid[i][j] === 1) {
-				arrayDfs(grid[i][j], i, j);
+				arrayDfs(grid, i, j);
+				res ++
 			}
 		}
 	}
+
+	return res
 };
 
 const arrayDfs = (grid, row, col) => {
