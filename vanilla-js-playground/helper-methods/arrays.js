@@ -56,3 +56,5 @@ console.log(roles);
 
 
 // create sort for array
+const values = [24, 32, 1, 100, 12, 2, 4, 36, 8, 21];
+console.log(values.sort((a, b) => {	return a < b ? -1 : 1;}));
