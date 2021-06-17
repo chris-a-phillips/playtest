@@ -50,7 +50,7 @@ const validAnagram2 = (first, second) => {
 
     for (let i = 0; i < second.length; i++) {
         const letter = second[i]
-        // if we can't find a letter or letter is zero then return false
+        // if we can't find a letter or letter is zero then return false (0 is falsey)
         if (!lookup[letter]) {
             return false
         } else {
