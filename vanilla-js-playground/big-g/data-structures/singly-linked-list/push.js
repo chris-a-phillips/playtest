@@ -26,7 +26,6 @@ class SinglyLinkedList {
         this.length ++
         return this
     }
-
 }
 
 const list = new SinglyLinkedList()
