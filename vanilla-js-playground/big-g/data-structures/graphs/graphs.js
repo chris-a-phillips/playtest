@@ -37,4 +37,52 @@ const isConnected = function (nodeOne, nodeTwo) {
     })
 }
 
-console.log(isConnected('A', 'B'))
+
+
+class Graph {
+    constructor() {
+        this.adjacencyList = {}
+    }
+
+    addVertex(vertex) {
+        if(!this.adjacencyList[vertex]) {
+            this.adjacencyList[vertex] = []
+        } else return false
+    }
+
+    addEdge(v1, v2) {
+        if (!this.adjacencyList[v1].includes(v2)) {
+            this.adjacencyList[v1].push(v2)
+        }
+        if (!this.adjacencyList[v2].includes(v1)) {
+            this.adjacencyList[v2].push(v1)
+        }
+    }
+
+    removeEdge(v1, v2) {
+        this.adjacencyList[v1] = this.adjacencyList[v1].filter(v => v !== v2)
+        this.adjacencyList[v2] = this.adjacencyList[v2].filter(v => v !== v1)
+    }
+
+    removeVertex(vertex) {
+        while(this.adjacencyList[vertex].length) {
+            const adjacentVertex = this.adjacencyList[vertex].pop()
+            this.removeEdge(vertex, adjacentVertex)
+        }
+        delete this.adjacencyList[vertex]
+    }
+}
+
+const graph = new Graph
+
+graph.addVertex('Tokyo')
+graph.addVertex('San Francisco')
+graph.addVertex('San Diego')
+graph.addEdge('San Francisco', 'San Diego')
+graph.addEdge('San Diego', 'San Francisco')
+graph.addEdge('Tokyo', 'San Francisco')
+graph.removeEdge('Tokyo', 'San Francisco')
+graph.removeVertex('San Diego')
+
+
+console.log(graph)
