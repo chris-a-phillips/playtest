@@ -11,9 +11,53 @@ const exampleFunction = (arg) => {
 }
 
 
-// CHAIN AND LINKS
+// ^ CHAIN AND LINKS
+// [X] create links and chains for game
+const createLinks = (playerOne, playerTwo, ...health) => {
+    /** Create all links for chain of the current game
+     *
+     * Attributes:
+     *  openChain = array of links that will never have owners
+     *  closedChain = array of links that will be taken from "openChain" after owner property is set
+     * Args:
+     *  playerOne: player passed in to create property for damage dealt
+     *  playerTwo: player passed in to create property for damage dealt
+     *  health: array of health values for links to be created
+     * Returns:
+     *  [openChain, closedChain]: tuple of chains for game logic
+     */
+    const openChain = []
+    const closedChain = []
 
-// [X] shift chain after threshold has been reached
+    for (const num of health) {
+        const link = new Link(num, playerOne, playerTwo)
+        openChain.push(link)
+    }
+
+    return [openChain, closedChain]
+}
+
+// [X] check if link needs to be removed after attack TODO: (does it happen during or after turn)
+const checkLink = (owner) => {
+    /** Checks if chain needs to be shifted
+     *
+     * Attributes:
+     *  destroyed: result of successful break of link
+     * Args:
+     *  owner: owner of ent that initiated last attack
+     * Returns:
+     *  destroyed: result of check -> if true will invoke shiftChain()
+     */
+    let destroyed = false
+    if(link.damage[owner] >= link.threshold) {
+        shiftChain(owner)
+        destroyed = true
+    }
+
+    return destroyed
+}
+
+// [X] shift chain after threshold has been reached and set new owner
 const shiftChain = (owner) => {
     /** Removes first link of chain and sets owner
      *
@@ -22,40 +66,37 @@ const shiftChain = (owner) => {
      * Args:
      *  owner: attacker to break threshold and become links owner
      * Returns:
-     *  chain: array of Links
+     *  [openChain, closedChain]: newly updated chains
      */
-    const link = chain[0]
+    const link = openChain[0]
 
     link.owner = owner
-    chain.shift()
+    openChain.shift()
+    closedChain.push(link)
 
-    return chain
+    return [openChain, closedChain]
 }
 
-// [X] create links for game
-const createLinks = (playerOne, playerTwo, ...health) => {
-    /** Create all links for chain of the current game
-     *
-     * Attributes:
-     *  chain = array of links to be created
-     * Args:
-     *  playerOne: player passed in to create property for damage dealt
-     *  playerTwo: player passed in to create property for damage dealt
-     *  health: array of health values for links to be created
-     * Returns:
-     *  chain: array of Links
-     */
-    const chain = []
 
-    for (const num of health) {
-        const link = new Link(num, playerOne, playerTwo)
-        chain.push(link)
+// ^ ENTS SETUP
+
+// [X] reset ents (position, target, intent)
+const resetEnts = (...entArray) => {
+    /** Takes in all ents and resets their properties of target, intent, and postion
+     *
+     * Args:
+     *  entArray: array of ents after battle properties are set
+     * Returns:
+     *  entArray: array of ents with reset properties
+     */
+    for (const ent of entArray) {
+        ent.target = null
+        ent.intent = null
+        ent.position = null
     }
 
-    return chain
+    return entArray
 }
-
-// ENTS SETUP
 
 // [X] put ents in order by speed
 const orderEntsBySpeed = (...entArray) => {
@@ -66,7 +107,7 @@ const orderEntsBySpeed = (...entArray) => {
      * Args:
      *  entArray: array of ents with property of speed of type num
      * Returns:
-     *  chain: array of ents in order of speed
+     *  entsInOrder: array of ents in order of speed
      */
     const entsInOrder = entArray
 
@@ -76,7 +117,28 @@ const orderEntsBySpeed = (...entArray) => {
 }
 
 
-// ENT ATTACKS
+// ^ ENT ACTIONS
+// [X] all ents in array either attack or use skill
+const entActionSequence = (...entArray) => {
+    /** Loop through array of ents and determine correct action helper function
+     *
+     * Attributes:
+     *  entArray: array of ents of all intentions
+     * Args:
+     *  entArray: array of ents of all intentions
+     * Returns:
+     *  entArray: array of all ents which have attacked or used skill
+     */
+    for (const ent of entArray) {
+        if(ent.intent === 'attack') {
+            entAtkResolve(ent, ent.target)
+        } else if(ent.intent === 'skill') {
+            entSkillResolve(ent)
+        }
+    }
+
+    return entArray
+}
 
 // [X] ent attack (with helper functions for different targets and intentions)
 const entAtkResolve = (ent, target) => {
@@ -88,15 +150,13 @@ const entAtkResolve = (ent, target) => {
      *  ent: ent initiating attack
      *  target: target of ent that is initiating attack
      * Returns:
-     *  success: True to make sure funcitons resolved
+     *  success: True to make sure function resolved
      */
     if (target.type === 'Ent') {
         if(target.position === 'open') {
             atkOpenPosEnt(ent, target)
         } else if(target.position === 'defend') {
             atkDefPosEnt(ent, target)
-        } else if(target.position === 'effect') {
-            atkEffPosEnt(ent, target)
         }
     } else if(target.type === 'Link') {
         atkChain(ent, target)
@@ -106,7 +166,7 @@ const entAtkResolve = (ent, target) => {
 }
 
 // [X] ent attacking ent in 'open' position
-const atkOpenPosEnt = (ent, target) => {
+const entAtkOpenPosEnt = (ent, target) => {
     /** Resolve ent attacking target ent in open position
      *
      * Attributes:
@@ -133,7 +193,7 @@ const atkOpenPosEnt = (ent, target) => {
 }
 
 // [X] ent attacking ent in 'defend' position
-const atkDefPosEnt = (ent, target) => {
+const entAtkDefPosEnt = (ent, target) => {
     /** Resolve ent attacking target ent in defend position
      *
      * Attributes:
@@ -160,7 +220,7 @@ const atkDefPosEnt = (ent, target) => {
 }
 
 // [X] ent attacking chain link
-const atkChain = (ent, chain) => {
+const entAtkChain = (ent, chain) => {
     /** Resolve ent attacking chain
      *
      * Attributes:
@@ -178,9 +238,58 @@ const atkChain = (ent, chain) => {
 
     link.currenthealth -= damage
     link.damage[ent.owner] += damage
-    if(link.damage[ent.owner] > threshold) {
-        shiftChain(ent.owner)
-    }
+    checkLink(ent.owner)
 
     return success
+}
+
+// [X] ent changing into defense itself
+const entSetDefIntent = (ent) => {
+    /** Change intent of ent to defend
+     *
+     * Args:
+     *  ent: declared to go into defense position
+     * Returns:
+     *  ent: now in defense position
+     */
+    ent.intent = 'defend'
+
+    return ent
+}
+
+// [X] change ents into defend position
+const entSetPositions = (...entArray) => {
+    /** Change ents into defend position
+     *
+     * Args:
+     *  entArray: array of ents with intents set
+     * Returns:
+     *  entArray: array of ents updated to correct position depending on intent
+     */
+    for (const ent of entArray) {
+        if (ent.intent === 'defend') {
+            ent.position = 'defend'
+        } else {
+            ent.position = 'open'
+        }
+    }
+
+    return entArray
+}
+
+// ^ PLAYERS
+// [X] create players (maybe both at once)
+const createPlayers = (nameOne, nameTwo) => {
+    /** Creates two new instances of the player class
+     *
+     * Args:
+     *  nameOne: name of playerOne
+     *  nameTwo: name of playerTwo
+     * Returns:
+     *  [playerOne, playerTwo]: two new player instances
+     */
+    const playerOne = new Player(nameOne)
+    const playerTwo = new Player(nameTwo)
+
+    return [playerOne, playerTwo]
 }

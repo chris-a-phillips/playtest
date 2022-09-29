@@ -39,7 +39,7 @@ export default class Ent {
     }
   }
 
-  activateEffect () {
+  activateSkill () {
 
   }
 }
