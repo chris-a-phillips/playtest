@@ -2,22 +2,42 @@
 
 import Link from './link.js'
 
-export default class Field {
-  constructor (teamOne, teamTwo) {
-    this.teamOne = teamOne
-    this.teamTwo = teamTwo
-    this.chain = []
-    this.ents = []
-  }
+export class Field {
+	constructor (alphaSide, omegaSide, chain) {
+		this.alphaSide = alphaSide
+		this.omegaSide = omegaSide
+		this.chain = {
+			open: [],
+			closed: []
+		}
+	}
 
-  addToChain (health) {
-    const link = new Link(health)
-    this.chain.push(link)
-    console.log(this.chain)
-    console.log(this.chain.length)
-  }
+	createChain() {
 
-  updateEnts (entsArray) {
-    this.ents = entsArray
-  }
+	}
+
+	shiftChain() {
+
+	}
+
+	updateEnts () {
+
+	}
+}
+
+export class Side {
+	constructor(player) {
+		this.player = player
+		this.ents = {
+			slotOne: {},
+			slotTwo: {},
+			slotThree: {},
+			slotFour: {}
+		}
+		this.hand = []
+		this.deck = []
+		this.discardPile = []
+		this.exhaustPile = []
+		this.artifact = {}
+	}
 }

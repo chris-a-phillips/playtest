@@ -13,7 +13,7 @@ const exampleFunction = (arg) => {
 
 // ^ CHAIN AND LINKS
 // [X] create links and chains for game
-const createLinks = (playerOne, playerTwo, ...health) => {
+const createChain = (playerOne, playerTwo, ...health) => {
     /** Create all links for chain of the current game
      *
      * Attributes:
@@ -68,11 +68,11 @@ const shiftChain = (owner) => {
      * Returns:
      *  [openChain, closedChain]: newly updated chains
      */
-    const link = openChain[0]
+    const link = chain.open[0]
 
     link.owner = owner
-    openChain.shift()
-    closedChain.push(link)
+    chain.open.shift()
+    chain.closed.push(link)
 
     return [openChain, closedChain]
 }
@@ -81,7 +81,7 @@ const shiftChain = (owner) => {
 // ^ ENTS SETUP
 
 // [X] reset ents (position, target, intent)
-const resetEnts = (...entArray) => {
+const entBattleReset = (...entArray) => {
     /** Takes in all ents and resets their properties of target, intent, and postion
      *
      * Args:
@@ -152,13 +152,13 @@ const entAtkResolve = (ent, target) => {
      * Returns:
      *  success: True to make sure function resolved
      */
-    if (target.type === 'Ent') {
+    if (target.category === 'Ent') {
         if(target.position === 'open') {
             atkOpenPosEnt(ent, target)
         } else if(target.position === 'defend') {
             atkDefPosEnt(ent, target)
         }
-    } else if(target.type === 'Link') {
+    } else if(target.category === 'Link') {
         atkChain(ent, target)
     }
 
@@ -241,6 +241,22 @@ const entAtkChain = (ent, chain) => {
     checkLink(ent.owner)
 
     return success
+}
+
+// [X] ent changing into defense itself
+const entSetAtkIntent = (ent, target) => {
+    /** Set intent and target of ent
+     *
+     * Args:
+     *  ent: ent whose properties are being changed
+     *  target: ent that will be the target of the attack
+     * Returns:
+     *  ent: updated properties for battle phase
+     */
+    ent.intent = 'attack'
+    ent.target = target
+
+    return ent
 }
 
 // [X] ent changing into defense itself
