@@ -8,51 +8,11 @@
 // each player side has 1 owner (player)
 // have a slot for each card that will be on the field
 
-// [ ] set ent intentions
-const setEntIntentions = (ent) => {
-    /** Resolve ent attacking target ent in effect position
-     *
-     * Attributes:
-     *  success: result of attack
-     * Args:
-     *  ent: ent taking action
-     * Returns:
-     *  success: result of attack
-     */
-}
 
-// [ ] ent attacking ent in 'effect' position
-const atkEffPosEnt = (ent, target) => {
-    /** Resolve ent attacking target ent in effect position
-     *
-     * Attributes:
-     *  success: result of attack
-     * Args:
-     *  ent: ent initiating attack
-     *  target: target of ent that is initiating attack
-     * Returns:
-     *  success: result of attack
-     */
-}
-
-
-// [ ] ent defending itself
-
-
-
-// [ ] ent array actions go through
-
-// [ ] reset ents (position, target, intent)
 
 // [ ] ent effects
 
 
-
-// [ ] check if link needs to be removed after attack (does it happen during or after turn)
-
-
-
-// [ ] create players (maybe both at once)
 
 // [ ] add cards and ents to field
 
@@ -60,15 +20,14 @@ const atkEffPosEnt = (ent, target) => {
 
 
 const exampleFunction = (arg) => {
-    /** The function does this
+    /**
+     * * The function does this
      *
-     * Attributes:
-     *  attr: variables created in the function
-     * Args:
-     *  arg: argument passed into the function
-     * Returns:
-     *  the return of the function
+     * ^ Attributes:
+     *  @param attr: variables created in the function
+     * ^ Args:
+     *  @param arg: argument passed into the function
+     * ^ Returns:
+     *  @param ret: the return of the function
      */
 }
-
-
