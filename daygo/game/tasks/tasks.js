@@ -14,33 +14,49 @@ const exampleFunction = (arg) => {
 
 // [ ] game log to show all events of previous turn
 
+// [ ] evo tracker for the different ent decisions
+
+// [ ] evo tracker for evolving
+
+// [ ] evo tracker for being defeated
+
+
 // ^ ALL YAML TASKS
+// ? StartGame
+    // ? FetchPlayerInfo
+    // ? FetchPlayerDecks
+    // ? CreatePlayers
+    // ? CreateSides
+    // ? CreateField
+    // ? CreateGameSession
+    // ? CreateChainLinks
 // ? StartTurn
-    // ? Start Play Phase
-        // ? ResetPlayerEnergy
-        // ? DrawPlayerHand
-        // ? SetPlayerCards
-        // ? SetFieldCards
-        // ? EndPlayPhase
-    // ? StartStandbyPhase
-        // ? SetFieldTurf
-        // ? SetEntIntintions
-        // ? EndStandbyPhase
-    // ? StartBattlePhase
-        // ? SetEntPositions
-        // ? InitiateEntActions
-        // ? CheckEntStatus
-        // ? CheckEntStatus
-        // ? CheckChainStatus
-        // ? EndBattlePhase
-    // ? StartEndPhase
-        // ? CheckWinConditions
-        // ? CheckLingeringEffects
-        // ? InsertChainLink
-        // ? PlayerHandRetain
-        // ? PlayerHandDiscard
-        // ? EndEndPhase
+// ? Start Play Phase
+    // ? ResetPlayerEnergy
+    // ? DrawPlayerHand
+    // ? SetPlayerCards
+    // ? SetFieldCards
+    // ? EndPlayPhase
+// ? StartStandbyPhase
+    // ? SetFieldTurf
+    // ? SetEntIntintions
+    // ? EndStandbyPhase
+// ? StartBattlePhase
+    // ? SetEntPositions
+    // ? InitiateEntActions
+    // ? CheckEntStatus
+    // ? CheckEntStatus
+    // ? CheckChainStatus
+    // ? EndBattlePhase
+// ? StartEndPhase
+    // ? CheckWinConditions
+    // ? CheckLingeringEffects
+    // ? InsertChainLink
+    // ? PlayerHandRetain
+    // ? PlayerHandDiscard
+    // ? EndEndPhase
 // ? EndTurn
+// ? EndGame
 
 
 // ^ FULL GAME LOGIC

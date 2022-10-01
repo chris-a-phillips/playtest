@@ -12,7 +12,7 @@ const exampleFunction = (arg) => {
 
 
 // ^ CHAIN AND LINKS
-// [X] create links and chains for game
+// [X] create links and chains for game // ! moved
 const createChain = (playerOne, playerTwo, ...health) => {
     /** Create all links for chain of the current game
      *
