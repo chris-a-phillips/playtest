@@ -53,3 +53,6 @@ game.declareIntention(snorlax, 'attack', battleField.chain[0])
 game.takeTurn()
 
 console.log(battleField.chain)
+
+
+// 
