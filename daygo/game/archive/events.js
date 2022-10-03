@@ -31,11 +31,9 @@ game.declareIntention(dragonite, 'defend', dragonite)
 game.declareIntention(starmie, 'attack', pikachu)
 game.declareIntention(snorlax, 'attack', battleField.chain[0])
 
-console.log(ash.currentChainDamage)
 const allEnts = [pikachu, charizard, dragonite, starmie, snorlax]
 battleField.updateEnts(allEnts)
 game.takeTurn()
-console.log(battleField.chain)
 
 game.declareIntention(pikachu, 'attack', dragonite)
 game.declareIntention(charizard, 'attack', starmie)

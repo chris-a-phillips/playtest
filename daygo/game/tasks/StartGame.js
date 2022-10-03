@@ -1,4 +1,4 @@
-import { Field, Game, Player, Side } from "../classes.js";
+import { Player, Side, Field, Game } from "../engine.js";
 
 // ^ FetchPlayerInfo
 
@@ -12,12 +12,12 @@ const yugi = new Player('yugi', [])
 
 
 // ^ CreateSides
-const alpha = new Side(ash)
-const omega = new Side(yugi)
+const alphaSide = new Side(ash)
+const omegaSide = new Side(yugi)
 
 
 // ^ CreateField
-const field = new Field(alpha, omega)
+const field = new Field(alphaSide, omegaSide)
 
 
 // ^ CreateGameSession
@@ -28,8 +28,4 @@ const game = new Game(field)
 const healthValues = [300, 400, 500]
 field.createChain(ash, yugi, healthValues)
 
-
-console.log(game)
-// console.log('links:', game.field.chain.open)
-
-export { game }
+export { ash, yugi, alphaSide, omegaSide, field, game }
