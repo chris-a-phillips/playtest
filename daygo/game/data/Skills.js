@@ -1,4 +1,3 @@
-
 /*
 Ratings and how they work:
 -1: Detrimental
@@ -23,9 +22,3 @@ Ratings and how they work:
 	  The sort of ability that defines metagames.
 	ex. Imposter, Shadow Tag
 */
-
-interface Synergy {
-    name: string,
-    elements: [string, string],
-    description: string
-}
