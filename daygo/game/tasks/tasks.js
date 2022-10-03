@@ -52,8 +52,8 @@ const exampleFunction = (arg) => {
     // ? CheckWinConditions
     // ? CheckLingeringEffects
     // ? InsertChainLink
-    // ? PlayerHandRetain
-    // ? PlayerHandDiscard
+    // ? RetainPlayerHand
+    // ? DiscardPlayerHand
     // ? EndEndPhase
 // ? EndTurn
 // ? EndGame

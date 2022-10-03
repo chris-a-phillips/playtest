@@ -1,3 +1,19 @@
-import { game } from './StartGame.js'
+import { EntCard } from '../classes/Cards.js'
+import { ash, yugi, alphaSide, omegaSide, field, game } from './StartGame.js'
 
-console.log(game)
+// ^ ResetPlayerEnergy
+ash.resetEnergy()
+yugi.resetEnergy()
+
+// ^ DrawPlayerHand
+
+
+// ^ SetPlayerCards
+
+
+// ^ SetFieldCards
+
+
+// ^ EndPlayPhase
+
+
