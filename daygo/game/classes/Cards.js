@@ -6,7 +6,12 @@ export class EntCard {
         this.defense = defense
         this.speed = speed
         this.category = 'Ent'
-        this.evo = 0
+        this.evo = {
+            attack: 0,
+            defense: 0,
+            skill: 0,
+            total: 0
+        }
         this.skill = null
         this.owner = null
         this.item = null

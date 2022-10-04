@@ -35,8 +35,6 @@ const exampleFunccion = (arg) => {
 
 // [ ] ent effects
 
-
-
 // [ ] add cards and ents to field
 
 // FLOW WILL GO LIKE THIS (goal is to chain methods if possible)

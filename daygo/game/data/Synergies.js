@@ -215,7 +215,7 @@ export const Synergies = {
 		shortDescription: 'players retain 1 card per turn per match',
 		longDescription: ''
 	},
-	enhance: {
+	enhance: { //FIXME: change elements
 		elements:['Light', 'anything'],
 		category: '',
 		affected: ['match'],
@@ -223,7 +223,7 @@ export const Synergies = {
 		shortDescription: 'match ent stats boosted',
 		longDescription: ''
 	},
-	diminish: {
+	diminish: { //FIXME: change elements
 		elements:['Dark', 'anything'],
 		category: '',
 		affected: ['diff'],
@@ -236,7 +236,7 @@ export const Synergies = {
 		category: '',
 		affected: [''],
 		stat: '',
-		shortDescription: 'no effect',
+		shortDescription: 'no special effect',
 		longDescription: ''
 	},
 	CHAOS: { // TODO: make special function
