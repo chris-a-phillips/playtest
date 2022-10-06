@@ -127,7 +127,7 @@ export const Synergies = {
 		shortDescription: 'item cards attached to match are more effective',
 		longDescription: ''
 	},
-	bLight: {
+	bight: {
 		elements:['Terra', 'Metal'],
 		category: '',
 		affected: ['diff', 'item'],
@@ -231,7 +231,7 @@ export const Synergies = {
 		shortDescription: 'diff ent stats lowered',
 		longDescription: ''
 	},
-	NEUTRALIZE: { //FIXME: change elements
+	neutralize: { //FIXME: change elements
 		elements:['Basic', 'anything'],
 		category: '',
 		affected: [''],
@@ -239,7 +239,7 @@ export const Synergies = {
 		shortDescription: 'no special effect',
 		longDescription: ''
 	},
-	CHAOS: { // TODO: make special function
+	chaos: { // TODO: make special function
 		elements:['Light', 'Dark', 'Basic'] ,
 		category: '',
 		affected: [''],
@@ -247,7 +247,7 @@ export const Synergies = {
 		shortDescription: 'type effectiveness is reversed',
 		longDescription: ''
 	},
-	OVERWHELM: { // TODO: make special function
+	overwhelm: { // TODO: make special function
 		elements:['four of any 1 type'],
 		category: '',
 		affected: [''],

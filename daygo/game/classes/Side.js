@@ -7,10 +7,15 @@ export default class Side {
 			slotThree: {},
 			slotFour: {}
 		}
-		this.hand = player.deck
-		this.deck = []
+		this.hand = []
+		this.deck = player.deck
 		this.discardPile = []
 		this.exhaustPile = []
 		this.artifact = {}
+	}
+
+	addToSide(slot, ent) {
+		ent.owner = this.player
+		this.ents[slot] = ent
 	}
 }

@@ -1,11 +1,11 @@
 export class BattleAction {
-    constructor(attacker, target, success, base, synergy, bonus) {
+    constructor(attacker, target, success, evoMod, synergy, bonus) {
 
     }
 }
 
 
-export const calc = (attacker, target, success, base = 2, synergy = 1, bonus = 1) => {
+export const calc = (attacker, target, success, evoMod = 2, synergy = 1, bonus = 1) => {
     const attackerValue = attacker.type
     const defenderValue = attacker.type[target.type]
     const res = base * attackerValue * defenderValue * bonus
@@ -19,10 +19,10 @@ export const calc = (attacker, target, success, base = 2, synergy = 1, bonus = 1
 }
 
 // 2 * 1 * 1.5 = 3
-// base * attacker * target
+// base evo value * attacker type * target type = number of evo 
 
 
-const calc = (attacker, target, success, base = 2, synergy = 1,bonus = 1) => {
+const calc = (attacker, target, success, evoMod = 2, synergy = 1,bonus = 1) => {
     /** Master function to calculate damage and results of attacks
      *
      * Attributes:
@@ -31,17 +31,17 @@ const calc = (attacker, target, success, base = 2, synergy = 1,bonus = 1) => {
      *  attacker: ent that is initiating attack
      *  target: ent that is being attacked
      *  success: result of attack
-     *  base: base evo (2 with no flags enabled)
+     *  evoMod: base modifier for value of evo (2 with no flags enabled)
      *  synergy: value of current turf effect
      *  bonus: bonus value from any skills or items
      * Returns:
      *  res: final output value ofattack
      */
-    const matchValue = calcTypeMatchValue(attacker, target) // TODO: MAKE FUNCTION TO CALCULATE TYPE MATCHUP EFFECTIVENESS
-    const res = base * matchValue
+    const matchValue = calcTypeMatchupValue(attacker, target) // TODO: MAKE FUNCTION TO CALCULATE TYPE MATCHUP EFFECTIVENESS
+    const res = evoMod * matchValue
 }
 
-const calcTypeMatchValue = (arg) => {
+const calcTypeMatchupValue = (arg) => {
     /** The function does this
      *
      * Attributes:
@@ -53,7 +53,7 @@ const calcTypeMatchValue = (arg) => {
      */
 }
 
-const calcCounterValue = (typeMatchValue, base = 2) => {
+const calcEvoModValue = (typeMatchValue, evoMod = 2) => {
     /** The function does this
      *
      * Attributes:
@@ -90,6 +90,18 @@ const calcSynergyValue = (arg) => {
 }
 
 const calcBonusValue = (arg) => {
+    /** The function does this
+     *
+     * Attributes:
+     *  attr: variables created in the function
+     * Args:
+     *  arg: argument passed into the function
+     * Returns:
+     *  the return of the function
+     */
+}
+
+const determineCrit = (arg) => {
     /** The function does this
      *
      * Attributes:

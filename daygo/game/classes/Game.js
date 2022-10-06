@@ -2,11 +2,11 @@ export default class Game {
 	constructor (field) {
 		this.field = field
 		this.turns = []
+        this.test = 'test'
 	}
 
 	takeTurn () {
-        
-
+        const entArray = this.entSetup.createEntArray()
 	}
 
     entSetup = {
