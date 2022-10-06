@@ -132,3 +132,7 @@ const exampleFunction = (arg) => {
 // [ ] MESSAGE LOGGER LOGIC
     // [ ] decide whats important to log to players
     // [ ] create logger for messages
+
+// Game > Chain > Links
+//      > Field > Side > Ents
+//              > Player

@@ -1,5 +1,4 @@
-import { EntCard } from '../classes/Cards.js'
-import { ash, yugi, alphaSide, omegaSide, field, game } from './StartGame.js'
+import { ash, yugi, alphaSide, omegaSide, field, game } from "./StartStandbyPhase.js"
 
 // ^ ResetPlayerEnergy
 ash.resetEnergy()
@@ -15,5 +14,3 @@ yugi.resetEnergy()
 
 
 // ^ EndPlayPhase
-
-

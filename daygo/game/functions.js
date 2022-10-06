@@ -51,3 +51,4 @@ const exampleFunccion = (arg) => {
                 // .checkLink(owner) -> returns destroyed true/false
                 // shiftChain(owner) -> returns true
             // entSkillResove(ent) -> should return ent
+

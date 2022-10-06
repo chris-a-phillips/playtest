@@ -9,6 +9,28 @@ export default class Field {
             open : [],
             closed : []
         }
+		this.turf = null
+	}
+
+	createEntArray = () => {
+		/** Creates an array of all ents on the field
+		 *
+		 * Attributes:
+		 *  entArray: empty array to be filled with ents
+		 * Returns:
+		 *  entArray: array of ents with reset properties
+		 */
+		const entArray = []
+		const alphaSideEnts = this.alphaSide.ents
+		const omegaSideEnts = this.omegaSide.ents
+
+		for (const ent in alphaSideEnts) {
+			entArray.push(alphaSideEnts[ent])
+		}
+		for (const ent in omegaSideEnts) {
+			entArray.push(omegaSideEnts[ent])
+		}
+		return entArray
 	}
 
 	createChain = (playerAlpha, playerOmega, health) => {
@@ -80,7 +102,77 @@ export default class Field {
 		return true
 	}
 
-	updateEnts () {
+	synergy = {
+		createSynergyTypeMap: () => {
+			const entArray = this.createEntArray()
+			const typeMap = {}
+			const typeArray = []
+			const typeMapArray = []
 
+			for (const ent of entArray) {
+				const type = ent.type
+				const statTotal = ent.attack + ent.defense + ent.speed
+				typeArray.push([type, statTotal])
+			}
+
+			for (const ent of typeArray) {
+				const type = ent[0]
+				const statTotal = ent[1]
+				if(!typeMap[type]) {
+					typeMap[type] = {
+						num: 1,
+						statTotal: statTotal
+					}
+				} else {
+					typeMap[type].num ++
+					typeMap[type].statTotal += statTotal
+				}
+			}
+
+			for (const type in typeMap) {
+				const entry = {
+					type: type,
+					num: typeMap[type].num,
+					statTotal: typeMap[type].statTotal
+				}
+				typeMapArray.push(entry)
+			}
+
+			typeMapArray.sort((a, b) => (a.num > b.num) ? -1 : (a.num === b.num) ? ((a.statTotal > b.statTotal) ? -1 : 1) : 1 )
+
+			return typeMapArray
+		},
+		checkForSpecialSynergies: () => {
+			const typeMapArray = this.synergy.createSynergyTypeMap()
+			console.log(typeMapArray)
+
+			checkForOverwhelmSynergy(typeMapArray)
+			checkForLightSynergy(typeMapArray)
+			checkForDarkSynergy(typeMapArray)
+			checkForBasicSynergy(typeMapArray)
+
+		},
+		checkForOverwhelmSynergy: (typeMapArray) => {
+			if(typeMapArray[0].num === 4) {
+				console.log('overwhelm')
+			}
+		},
+		checkForlightSynergy: (typeMapArray) => {
+			if(typeMapArray[0] === 'light' || typeMapArray[1] === 'light') {
+				console.log('enhance')
+			}
+		},
+		checkForDarkSynergy: (typeMapArray) => {
+			if(typeMapArray[0] === 'dark' || typeMapArray[1] === 'dark') {
+				console.log('diminish')
+			}
+		},
+		checkForBasicSynergy: (typeMapArray) => {
+			if(typeMapArray[0] === 'basic' || typeMapArray[1] === 'basic') {
+				console.log('neutralize')
+			}
+		}
 	}
+
 }
+
