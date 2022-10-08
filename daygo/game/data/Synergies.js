@@ -1,126 +1,143 @@
 export const Synergies = {
-	sandstorm : {
-		elements: ['Air', 'Stone'],
+	sandstorm: {
+		name: 'sandstorm',
+		elements: ['air', 'stone'],
 		category: '',
 		affected: ['match'],
 		shortDescription: 'match defense boosted',
 		longDescription: ''
 	},
-	plasma : {
-		elements: ['Lightning', 'Fire'],
+	plasma: {
+		name: 'plasma',
+		elements: ['lightning', 'fire'],
 		category: '',
 		affected: ['diff'],
 		shortDescription: 'diff defense reduced',
 		longDescription: ''
 	},
-	blaze : {
-		elements: ['Terra', 'Fire'],
+	blaze: {
+		name: 'blaze',
+		elements: ['terra', 'fire'],
 		category: '',
 		affected: ['match'],
 		shortDescription: 'match attack boosted',
 		longDescription: ''
 	},
-	slush : {
-		elements: ['Water', 'Ice'],
+	slush: {
+		name: 'slush',
+		elements: ['water', 'ice'],
 		category: '',
 		affected: ['diff'],
 		shortDescription: 'diff attack reduced',
 		longDescription: ''
 	},
-	crystal : {
-		elements: ['Terra', 'Lightning'],
+	crystal: {
+		name: 'crystal',
+		elements: ['terra', 'lightning'],
 		category: '',
 		affected: ['match'],
 		shortDescription: 'match speed boosted',
 		longDescription: ''
 	},
-	swamp : {
-		elements: ['Terra', 'Water'],
+	swamp: {
+		name: 'swamp',
+		elements: ['terra', 'water'],
 		category: '',
 		affected: ['diff'],
 		shortDescription: 'diff speed reduced',
 		longDescription: ''
 	},
-	spring : {
-		elements: ['Stone', 'Water'],
+	spring: {
+		name: 'spring',
+		elements: ['stone', 'water'],
 		category: '',
 		affected: ['player', 'match'],
 		shortDescription: 'players have 1 more energy per turn for each own ent match',
 		longDescription: ''
 	},
-	flash : {
-		elements: ['Air', 'Lightning'],
+	flash: {
+		name: 'flash',
+		elements: ['air', 'lightning'],
 		category: '',
 		affected: ['match'],
 		shortDescription: 'players have 1 less energy per turn per for each opponent ent match',
 		longDescription: ''
 	},
-	storm : {
-		elements: ['Water', 'Lightning'],
+	storm: {
+		name: 'storm',
+		elements: ['water', 'lightning'],
 		category: '',
 		affected: ['match'],
 		stat: '',
 		shortDescription: 'match attacks have splash damage',
 		longDescription: ''
 	},
-	thorn : {
-		elements: ['Stone', 'Terra'],
+	thorn: {
+		name: 'thorn',
+		elements: ['stone', 'terra'],
 		category: '',
 		affected: ['match', 'player'],
 		stat: '',
 		shortDescription: 'players have 1 less artifact slot per match',
 		longDescription: ''
 	},
-	glare : {
-		elements: ['Lightning', 'Stone'],
+	glare: {
+		name: 'glare',
+		elements: ['lightning', 'stone'],
 		category: '',
 		affected: ['diff'],
 		stat: '',
 		shortDescription: 'diff may attack wrong target',
 		longDescription: ''
 	},
-	smoke : {
-		elements: ['Fire', 'Air'],
+	smoke: {
+		name: 'smoke',
+		elements: ['fire', 'air'],
 		category: '',
 		affected: ['diff'],
 		stat: '',
 		shortDescription: 'diff attacks have chance of missing',
 		longDescription: ''
 	},
-	harden : {
-		elements: ['Stone', 'Metal'],
+	harden: {
+		name: 'harden',
+		elements: ['stone', 'metal'],
 		category: '',
 		affected: ['match'],
 		stat: '',
 		shortDescription: 'match receives 1 evo counter after each turn',
 		longDescription: ''
 	},
-	melt : {
-		elements: ['Ice', 'Fire'],
+	melt: {
+		name: 'melt',
+		elements: ['ice', 'fire'],
 		category: '',
 		affected: ['diff'],
 		stat: '',
 		shortDescription: 'diff loses 1 evo counter after each turn',
 		longDescription: ''
 	},
-	spark : {
-		elements: ['Metal', 'Lightning'],
+	spark: {
+		name: 'spark',
+		elements: ['metal', 'lightning'],
 		category: '',
 		affected: ['player', 'diff'],
 		stat: '',
 		shortDescription: 'players gain 1 energy for each opponent diff',
 		longDescription: ''
 	},
-	acid : {
-		elements: ['Metal', 'Water'],
+	acid: {
+		name: 'acid',
+		elements: ['metal', 'water'],
 		category: '',
 		affected: ['player', 'diff'],
 		stat: '',
 		shortDescription: 'players lose 1 energy for each diff they control',
 		longDescription: ''
 	},
-	spore : {
-		elements: ['Terra', 'Air'],
+	spore: {
+		name: 'spore',
+		elements: ['terra', 'air'],
 		category: '',
 		affected: ['match', 'item'],
 		stat: '',
@@ -128,7 +145,8 @@ export const Synergies = {
 		longDescription: ''
 	},
 	bight: {
-		elements:['Terra', 'Metal'],
+		name: 'bight',
+		elements:['terra', 'metal'],
 		category: '',
 		affected: ['diff', 'item'],
 		stat: '',
@@ -136,7 +154,8 @@ export const Synergies = {
 		longDescription: ''
 	},
 	steam: {
-		elements:['Fire', 'Water'],
+		name: 'steam',
+		elements:['fire', 'water'],
 		category: '',
 		affected: ['chain'],
 		stat: '',
@@ -144,7 +163,8 @@ export const Synergies = {
 		longDescription: ''
 	},
 	hail: {
-		elements:['Ice', 'Air'],
+		name: 'hail',
+		elements:['ice', 'air'],
 		category: '',
 		affected: ['chain'],
 		stat: '',
@@ -152,7 +172,8 @@ export const Synergies = {
 		longDescription: ''
 	},
 	chill: {
-		elements:['Water', 'Air'],
+		name: 'chill',
+		elements:['water', 'air'],
 		category: '',
 		affected: ['all'],
 		stat: '',
@@ -160,7 +181,8 @@ export const Synergies = {
 		longDescription: ''
 	},
 	smolder: {
-		elements:['Metal', 'Fire'],
+		name: 'smolder',
+		elements:['metal', 'fire'],
 		category: '',
 		affected: ['all'],
 		stat: '',
@@ -168,7 +190,8 @@ export const Synergies = {
 		longDescription: ''
 	},
 	slick: {
-		elements:['Ice', 'Stone'],
+		name: 'slick',
+		elements:['ice', 'stone'],
 		category: '',
 		affected: [''],
 		stat: '',
@@ -176,7 +199,8 @@ export const Synergies = {
 		longDescription: ''
 	},
 	callous: {
-		elements:['Ice', 'Metal'],
+		name: 'callous',
+		elements:['ice', 'metal'],
 		category: '',
 		affected: ['match'],
 		stat: '',
@@ -184,7 +208,8 @@ export const Synergies = {
 		longDescription: ''
 	},
 	gale: {
-		elements:['Metal', 'Air'],
+		name: 'gale',
+		elements:['metal', 'air'],
 		category: '',
 		affected: ['player', 'match'],
 		stat: '',
@@ -192,7 +217,8 @@ export const Synergies = {
 		longDescription: ''
 	},
 	frost: {
-		elements:['Terra', 'Ice'],
+		name: 'frost',
+		elements:['terra', 'ice'],
 		category: '',
 		affected: ['player', 'diff'],
 		stat: '',
@@ -200,7 +226,8 @@ export const Synergies = {
 		longDescription: ''
 	},
 	lava: {
-		elements:['Fire', 'Stone'],
+		name: 'lava',
+		elements:['fire', 'stone'],
 		category: '',
 		affected: ['player'],
 		stat: '',
@@ -208,46 +235,52 @@ export const Synergies = {
 		longDescription: ''
 	},
 	tempest: {
-		elements:['Ice', 'Lightning'],
+		name: 'tempest',
+		elements:['ice', 'lightning'],
 		category: '',
 		affected: ['player', 'match'],
 		stat: '',
 		shortDescription: 'players retain 1 card per turn per match',
 		longDescription: ''
 	},
-	enhance: { //FIXME: change elements
-		elements:['Light', 'anything'],
+	enhance: {
+		name: 'enhance',
+		elements:['light', 'anything'],
 		category: '',
 		affected: ['match'],
 		stat: '',
 		shortDescription: 'match ent stats boosted',
 		longDescription: ''
 	},
-	diminish: { //FIXME: change elements
-		elements:['Dark', 'anything'],
+	diminish: {
+		name: 'diminish',
+		elements:['dark', 'anything'],
 		category: '',
 		affected: ['diff'],
 		stat: '',
 		shortDescription: 'diff ent stats lowered',
 		longDescription: ''
 	},
-	neutralize: { //FIXME: change elements
-		elements:['Basic', 'anything'],
+	neutralize: {
+		name: 'neutralize',
+		elements:['basic', 'anything'],
 		category: '',
 		affected: [''],
 		stat: '',
 		shortDescription: 'no special effect',
 		longDescription: ''
 	},
-	chaos: { // TODO: make special function
-		elements:['Light', 'Dark', 'Basic'] ,
+	chaos: {
+		name: 'chaos',
+		elements:['light', 'dark', 'basic'] ,
 		category: '',
 		affected: [''],
 		stat: '',
 		shortDescription: 'type effectiveness is reversed',
 		longDescription: ''
 	},
-	overwhelm: { // TODO: make special function
+	overwhelm: {
+		name: 'overwhelm',
 		elements:['four of any 1 type'],
 		category: '',
 		affected: [''],
