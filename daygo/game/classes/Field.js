@@ -1,4 +1,5 @@
 import Link from "./Link.js"
+import { Synergies } from "../data/Synergies.js"
 
 export default class Field {
 	constructor (alphaSide, omegaSide) {
@@ -103,6 +104,43 @@ export default class Field {
 	}
 
 	synergy = {
+		setFieldTurf: (synergy) => {
+			const typeMapArray = this.synergy.createSynergyTypeMap()
+
+			this.turf = Synergies[synergy]
+			console.log(this.turf)
+			console.log(this.synergy.checkForLightDarkBasicSynergy(typeMapArray))
+			return synergy
+		},
+		// FIXME: FIGURE OUT SWITCH STATEMENT ALTERNATIVE (probably object literals)
+		synergyControlFlow: () => {
+		/** Uses helper functions that check for appropriate synergy and applies it to the field
+		 *
+		 * Attributes:
+		 *  typeMapArray: array of objects containing the names of types on the field, the number of ents with that type, and the statTotal (tiebreker) of the matching ents
+		 *  synergy: variable for logging purposes
+		 * Returns:
+		 *  synergy: new synergy for upcoming phase of turn
+		 */
+			const typeMapArray = this.synergy.createSynergyTypeMap()
+
+			if (this.synergy.checkForOverwhelmSynergy(typeMapArray)) {
+				return
+			}
+			if (this.synergy.checkForChaosSynergy(typeMapArray)) {
+				return
+			}
+			if (this.synergy.checkForLightDarkBasicSynergy(typeMapArray)) {
+				return
+			}
+			if (this.synergy.checkForNormalSynergy(typeMapArray)) {
+				return
+			}
+
+
+			console.log('synergy function is hella broke')
+			return
+		},
 		createSynergyTypeMap: () => {
 			const entArray = this.createEntArray()
 			const typeMap = {}
@@ -139,38 +177,77 @@ export default class Field {
 			}
 
 			typeMapArray.sort((a, b) => (a.num > b.num) ? -1 : (a.num === b.num) ? ((a.statTotal > b.statTotal) ? -1 : 1) : 1 )
+			console.log(typeMapArray)
 
 			return typeMapArray
 		},
-		checkForSpecialSynergies: () => {
-			const typeMapArray = this.synergy.createSynergyTypeMap()
-			console.log(typeMapArray)
-
-			checkForOverwhelmSynergy(typeMapArray)
-			checkForLightSynergy(typeMapArray)
-			checkForDarkSynergy(typeMapArray)
-			checkForBasicSynergy(typeMapArray)
-
-		},
 		checkForOverwhelmSynergy: (typeMapArray) => {
-			if(typeMapArray[0].num === 4) {
-				console.log('overwhelm')
+			let synergy
+			const strengthOfFirstType = typeMapArray[0].num
+			if(strengthOfFirstType >= 4) {
+				synergy = 'overwhelm'
 			}
+			return synergy
 		},
-		checkForlightSynergy: (typeMapArray) => {
-			if(typeMapArray[0] === 'light' || typeMapArray[1] === 'light') {
-				console.log('enhance')
+		checkForLightDarkBasicSynergy: (typeMapArray) => {
+			let synergy
+			const firstType = typeMapArray[0].type
+			const secondType = typeMapArray[1].type
+
+			const synergyMap = {
+				'basic': 'neutralize',
+				'light': 'enhance',
+				'dark': 'diminish',
+				'default': false
 			}
+
+			if(synergyMap[firstType] && synergyMap[secondType]) {
+				synergy = breakTie()
+			} else(
+				synergy = synergyMap[firstType] || synergyMap[secondType] || synergyMap['default']
+			)
+
+			function breakTie() {
+				const tiebreakArray = [typeMapArray[0], typeMapArray[1]]
+				const strongestType = tiebreakArray.sort((a, b) => a.statTotal > b.statTotal ? 1 : -1)[0].type
+				return strongestType
+			}
+
+			return synergy
 		},
-		checkForDarkSynergy: (typeMapArray) => {
-			if(typeMapArray[0] === 'dark' || typeMapArray[1] === 'dark') {
-				console.log('diminish')
+		checkForChaosSynergy: (typeMapArray) => {
+			let synergy
+			let light = false
+			let dark = false
+			let basic = false
+			for(const type of typeMapArray) {
+				if(type.type === 'light') {
+					light = true
+				} else if(type.type === 'dark') {
+					dark = true
+				} else if(type.type === 'basic') {
+					basic = true
+				}
 			}
+			if(light && dark && basic) {
+				synergy = 'chaos'
+			}
+			return synergy
 		},
-		checkForBasicSynergy: (typeMapArray) => {
-			if(typeMapArray[0] === 'basic' || typeMapArray[1] === 'basic') {
-				console.log('neutralize')
+		checkForNormalSynergy: () => {
+			const typeMapArray = this.synergy.createSynergyTypeMap()
+			let synergy
+			const firstType = typeMapArray[0].type
+			const secondType = typeMapArray[1].type
+
+			for (const type in Synergies) {
+				if(Synergies[type].elements.includes(firstType) && Synergies[type].elements.includes(secondType)){
+					synergy = Synergies[type].name
+					return
+				}
 			}
+
+			return synergy
 		}
 	}
 

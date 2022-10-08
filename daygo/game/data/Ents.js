@@ -1,4 +1,4 @@
-export const faang = {
+export const ents = {
     dra: {
         type: 'Light',
         attack: 117,
