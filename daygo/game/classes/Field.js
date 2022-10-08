@@ -104,44 +104,34 @@ export default class Field {
 	}
 
 	synergy = {
-		setFieldTurf: (synergy) => {
+		setFieldTurf: () => {
+			/** Control flow to use helper functions to apply appropriate synergy to the field
+			 *
+			 * Attributes:
+			 *  typeMapArray: array of objects containing { type: 'name', num: count, statTotal: count } for each type
+			 */
 			const typeMapArray = this.synergy.createSynergyTypeMap()
 
-			this.turf = Synergies[synergy]
-			console.log(this.turf)
-			console.log(this.synergy.checkForLightDarkBasicSynergy(typeMapArray))
-			return synergy
-		},
-		// FIXME: FIGURE OUT SWITCH STATEMENT ALTERNATIVE (probably object literals)
-		synergyControlFlow: () => {
-		/** Uses helper functions that check for appropriate synergy and applies it to the field
-		 *
-		 * Attributes:
-		 *  typeMapArray: array of objects containing the names of types on the field, the number of ents with that type, and the statTotal (tiebreker) of the matching ents
-		 *  synergy: variable for logging purposes
-		 * Returns:
-		 *  synergy: new synergy for upcoming phase of turn
-		 */
-			const typeMapArray = this.synergy.createSynergyTypeMap()
+			if (this.synergy.checkForOverwhelmSynergy(typeMapArray)) return
+			if (this.synergy.checkForChaosSynergy(typeMapArray)) return
+			if (this.synergy.checkForLightDarkBasicSynergy(typeMapArray)) return
+			if (this.synergy.checkForNormalSynergy(typeMapArray)) return
 
-			if (this.synergy.checkForOverwhelmSynergy(typeMapArray)) {
-				return
-			}
-			if (this.synergy.checkForChaosSynergy(typeMapArray)) {
-				return
-			}
-			if (this.synergy.checkForLightDarkBasicSynergy(typeMapArray)) {
-				return
-			}
-			if (this.synergy.checkForNormalSynergy(typeMapArray)) {
-				return
-			}
-
-
-			console.log('synergy function is hella broke')
+			// TODO: ADD THIS IN WITH OTHER ERRORS
+			// throw new Error ('Synergy function is hella broke')
 			return
 		},
 		createSynergyTypeMap: () => {
+			/** Creates an array of types from all of the ents on the field
+			 *
+			 * Attributes:
+			 *  entArray: array of all ents on field
+			 *  typeMap: object of all ents that includes the type name, count on field, and stat total of all matching ents with no duplicates
+			 *  typeArray: array of all types on the field with duplicate types
+			 *  typeMapArray: array of typeMap object
+			 * Returns:
+			 *  typeMapArray: sorted array of typeMap object in order of count, then statTotal from greatest to least
+			 */
 			const entArray = this.createEntArray()
 			const typeMap = {}
 			const typeArray = []
@@ -182,71 +172,110 @@ export default class Field {
 			return typeMapArray
 		},
 		checkForOverwhelmSynergy: (typeMapArray) => {
+			/** Checks to see if there are at least 4 of the same type to apply special 'overwhelm' synergy
+			 *
+			 * Attributes:
+			 *  synergy: variable created for logging purposes
+			 * 	numOfFirstType: the number of ents of the first occurence in typeMapArray
+			 * Args:
+			 *  typeMapArray: sorted array of objects of ents in order of count, then statTotal from greatest to least
+			 * Returns:
+			 *  synergy: new synergy being applied to the field
+			 */
 			let synergy
-			const strengthOfFirstType = typeMapArray[0].num
-			if(strengthOfFirstType >= 4) {
-				synergy = 'overwhelm'
+			const numOfFirstType = typeMapArray[0].num
+			if(numOfFirstType >= 4) {
+				synergy = Synergies.overwhelm
 			}
+			this.turf = synergy
+			return synergy
+		},
+		checkForChaosSynergy: (typeMapArray) => {
+			/** Checks to see if there are at least one of each 'light', 'dark', and 'basic' types to apply special 'chaos' synergy
+			 *
+			 * Attributes:
+			 *  synergy: variable created for logging purposes
+			 * 	check: object used to keep track of criteria for 'chaos' synergy
+			 * Args:
+			 *  typeMapArray: sorted array of objects of ents in order of count, then statTotal from greatest to least
+			 * Returns:
+			 *  synergy: new synergy being applied to the field
+			 */
+			let synergy
+			const check = {
+				light : false,
+				dark : false,
+				basic : false
+			}
+
+			for(const type of typeMapArray) {
+				if(type.type === 'light') {
+					check.light = true
+				} else if(type.type === 'dark') {
+					check.dark = true
+				} else if(type.type === 'basic') {
+					check.basic = true
+				}
+			}
+			if(check.light && check.dark && check.basic) {
+				synergy = Synergies.chaos
+			}
+
+			this.turf = synergy
 			return synergy
 		},
 		checkForLightDarkBasicSynergy: (typeMapArray) => {
+			/** Checks to see if any of the special types are one of the two most frequent types and applies the appropriate synergy
+			 *
+			 * Attributes:
+			 *  synergy: variable created for logging purposes
+			 *  firstType: string literal type of most frequent type on field
+			 *  secondType: string literal type of second most frequent type on field
+			 * Args:
+			 *  typeMapArray: sorted array of objects of ents in order of count, then statTotal from greatest to least
+			 * Returns:
+			 *  synergy: new synergy being applied to the field
+			 */
 			let synergy
 			const firstType = typeMapArray[0].type
 			const secondType = typeMapArray[1].type
 
 			const synergyMap = {
-				'basic': 'neutralize',
-				'light': 'enhance',
-				'dark': 'diminish',
+				'basic': Synergies.neutralize,
+				'light': Synergies.enhance,
+				'dark': Synergies.diminish,
 				'default': false
 			}
 
-			if(synergyMap[firstType] && synergyMap[secondType]) {
-				synergy = breakTie()
-			} else(
-				synergy = synergyMap[firstType] || synergyMap[secondType] || synergyMap['default']
-			)
+			synergy = synergyMap[firstType] || synergyMap[secondType] || synergyMap['default']
 
-			function breakTie() {
-				const tiebreakArray = [typeMapArray[0], typeMapArray[1]]
-				const strongestType = tiebreakArray.sort((a, b) => a.statTotal > b.statTotal ? 1 : -1)[0].type
-				return strongestType
-			}
-
+			this.turf = synergy
 			return synergy
 		},
-		checkForChaosSynergy: (typeMapArray) => {
-			let synergy
-			let light = false
-			let dark = false
-			let basic = false
-			for(const type of typeMapArray) {
-				if(type.type === 'light') {
-					light = true
-				} else if(type.type === 'dark') {
-					dark = true
-				} else if(type.type === 'basic') {
-					basic = true
-				}
-			}
-			if(light && dark && basic) {
-				synergy = 'chaos'
-			}
-			return synergy
-		},
-		checkForNormalSynergy: () => {
-			const typeMapArray = this.synergy.createSynergyTypeMap()
+		checkForNormalSynergy: (typeMapArray) => {
+			/** Checks for the two most prominent types and assigns the appropriate synergy
+			 *
+			 * Attributes:
+			 *  synergy: variable created for logging purposes
+			 *  firstType: string literal type of most frequent type on field
+			 *  secondType: string literal type of second most frequent type on field
+			 * Args:
+			 *  typeMapArray: sorted array of objects of ents in order of count, then statTotal from greatest to least
+			 * Returns:
+			 *  synergy: new synergy being applied to the field
+			 */
 			let synergy
 			const firstType = typeMapArray[0].type
 			const secondType = typeMapArray[1].type
 
 			for (const type in Synergies) {
 				if(Synergies[type].elements.includes(firstType) && Synergies[type].elements.includes(secondType)){
-					synergy = Synergies[type].name
-					return
+					synergy = Synergies[type]
+					break;
 				}
 			}
 
+			this.turf = synergy
 			return synergy
 		}
 	}

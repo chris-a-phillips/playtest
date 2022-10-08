@@ -245,7 +245,7 @@ export const Synergies = {
 	},
 	enhance: {
 		name: 'enhance',
-		elements:['light', 'anything'],
+		elements:['light'],
 		category: '',
 		affected: ['match'],
 		stat: '',
@@ -254,7 +254,7 @@ export const Synergies = {
 	},
 	diminish: {
 		name: 'diminish',
-		elements:['dark', 'anything'],
+		elements:['dark'],
 		category: '',
 		affected: ['diff'],
 		stat: '',
@@ -263,7 +263,7 @@ export const Synergies = {
 	},
 	neutralize: {
 		name: 'neutralize',
-		elements:['basic', 'anything'],
+		elements:['basic'],
 		category: '',
 		affected: [''],
 		stat: '',
@@ -281,7 +281,7 @@ export const Synergies = {
 	},
 	overwhelm: {
 		name: 'overwhelm',
-		elements:['four of any 1 type'],
+		elements:[''],
 		category: '',
 		affected: [''],
 		stat: '',
