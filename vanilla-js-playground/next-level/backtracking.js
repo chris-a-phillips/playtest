@@ -6,7 +6,7 @@
 //     3. Main logic function that does the heavy lifting at each instance
 
 // 3 KEYS of our main logic function
-//     1. Our Choice 
+//     1. Our Choice
 //         What choice do we make at each call of the function?
 //         RECURSION EXPRESSES DECISION
 //     2. Our Constraints
